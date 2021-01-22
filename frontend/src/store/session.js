@@ -29,6 +29,29 @@ export const setSessionUser = (creditial, password) => async (dispatch) => {
     };
 };
 
+export const restoreSessionUser = () => async dispatch => {
+    const response = await fetch("/api/session");
+
+    if (response.ok) {
+        const restoredUser = await response.data;
+        dispatch(load(restoredUser));
+    }
+};
+
+export const signup = (user) => async (dispatch) => {
+    const { username, email, password } = user;
+    const response = await fetch("/api/users", {
+        method: "POST",
+        body: JSON.stringify({
+            username,
+            email,
+            password,
+        }),
+    });
+    dispatch(load(response.data.user));
+    return response;
+};
+
 export const removeSessionUser = () => async (dispatch) => {
     const response = await null;
 
