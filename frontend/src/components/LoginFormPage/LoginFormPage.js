@@ -3,7 +3,7 @@ import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-function LoginFormPage() {
+export default function LoginFormPage() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const [credential, setCredential] = useState('');
@@ -17,7 +17,7 @@ function LoginFormPage() {
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
-        return dispatch(sessionActions.login({ credential, password }))
+        return dispatch(sessionActions.setSessionUser({ credential, password }))
             .catch((res) => {
                 if (res.data && res.data.errors) setErrors(res.data.errors);
             });
@@ -51,4 +51,4 @@ function LoginFormPage() {
     );
 }
 
-export default LoginFormPage;
+// export default LoginFormPage;
