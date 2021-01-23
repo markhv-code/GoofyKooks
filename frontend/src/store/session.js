@@ -14,6 +14,7 @@ const remove = () => ({
 })
 
 export const setSessionUser = (creditial, password) => async (dispatch) => {
+    console.log("the params", creditial, password)// credentnial is t an object
     const response = await fetch( "/api/session", {
         method: 'POST',
         headers:{
@@ -23,7 +24,7 @@ export const setSessionUser = (creditial, password) => async (dispatch) => {
     });
 
     if(response.ok) {
-        console.log("this is the response data", response.data)
+        console.log(response, "response");
         const userSession = await response.data;
         dispatch(load(userSession));
     };
@@ -65,7 +66,7 @@ const initalState = {user: null}
 export default function sessionReducer(state = initalState, action) {
     switch(action.type) {
         case LOAD: {
-            if(action.user){
+            if(Object.keys(action.user).length !== 0){
                 return {
                     ...state,
                    user: action.user
