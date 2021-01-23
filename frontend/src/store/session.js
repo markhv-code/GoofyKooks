@@ -9,8 +9,7 @@ const load = (user) => ({
 })
 
 const remove = () => ({
-    type: REMOVE,
-
+    type: REMOVE
 })
 
 export const setSessionUser = (signIn) => async (dispatch) => {
@@ -49,17 +48,20 @@ export const signup = (user) => async (dispatch) => {
             password,
         }),
     });
-    dispatch(load(response.data.user));
-    return response;
+    if(response.ok){
+        dispatch(load(response.data.user));
+        return response;
+    }
 };
 
-export const removeSessionUser = () => async (dispatch) => {
-    const response = await null;
-
-    if(response.ok) {
-        const removeSession = await response.json();
-        dispatch(remove(removeSession));
-    };
+export const logout = () => async (dispatch) => {
+    const response = await fetch('/api/session', {
+        method: 'DELETE',
+    });
+    if(response.ok){
+        dispatch(remove());
+        return response;
+    }
 };
 
 const initalState = {user: null}
@@ -75,9 +77,7 @@ export default function sessionReducer(state = initalState, action) {
             return state;
         }
         case REMOVE: {
-            return {
-                ...state,
-            }
+            return initalState
         }
         default:
             return state;
