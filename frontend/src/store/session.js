@@ -13,14 +13,13 @@ const remove = () => ({
 
 })
 
-export const setSessionUser = (creditial, password) => async (dispatch) => {
-    console.log("the params", creditial, password)// credentnial is t an object
+export const setSessionUser = (signIn) => async (dispatch) => {
     const response = await fetch( "/api/session", {
         method: 'POST',
         headers:{
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({"credential": creditial, "password": password})
+        body: JSON.stringify({"credential": signIn.credential, "password": signIn.password})
     });
 
     if(response.ok) {
@@ -40,6 +39,7 @@ export const restoreSessionUser = () => async dispatch => {
 };
 
 export const signup = (user) => async (dispatch) => {
+    console.log("this is the user", user)
     const { username, email, password } = user;
     const response = await fetch("/api/users", {
         method: "POST",
