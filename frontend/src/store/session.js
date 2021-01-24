@@ -37,7 +37,6 @@ export const restoreSessionUser = () => async dispatch => {
 };
 
 export const signup = (user) => async (dispatch) => {
-    ("this is the user", user)
     const { username, email, password } = user;
     const response = await fetch("/api/users", {
         method: "POST",
