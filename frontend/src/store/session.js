@@ -22,7 +22,6 @@ export const setSessionUser = (signIn) => async (dispatch) => {
     });
 
     if(response.ok) {
-        console.log(response, "response");
         const userSession = await response.data;
         dispatch(load(userSession));
     };
@@ -38,7 +37,7 @@ export const restoreSessionUser = () => async dispatch => {
 };
 
 export const signup = (user) => async (dispatch) => {
-    console.log("this is the user", user)
+    ("this is the user", user)
     const { username, email, password } = user;
     const response = await fetch("/api/users", {
         method: "POST",
