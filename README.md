@@ -54,3 +54,24 @@ To run this application locally, you'll need to:
 ```sh
     npm start
  ```
+
+ ## Technologies Used
+
+* PostgreSQL
+* Express.js
+* React
+* Redux
+* JavaScript
+* Tailwind CSS Framework
+* Bcryptjs
+* Express-session
+* Express-validator
+* Node.js
+
+## Live Site
+
+[Here's](https://goofy-kooks.herokuapp.com/) a link to our live app!
+
+## Documentation
+
+[Here's](https://github.com/markhv-code/GoofyKoooks/wiki/) a link to our Wiki!
