@@ -74,4 +74,4 @@ To run this application locally, you'll need to:
 
 ## Documentation
 
-[Here's](https://github.com/markhv-code/GoofyKoooks/wiki/) a link to our Wiki!
+[Here's](https://github.com/markhv-code/GoofyKooks/wiki) a link to our Wiki!
