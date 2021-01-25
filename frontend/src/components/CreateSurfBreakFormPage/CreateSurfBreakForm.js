@@ -1,31 +1,39 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createPokemon, getPokemonTypes } from '../store/pokemon';
+// import { createPokemon, getPokemonTypes } from '../store/pokemon';
 import { useHistory } from 'react-router-dom';
 
 
 function CreateSurfBreakFormPage(){
+    const states = [
+"AK","AL","AR","AZ","CA","CO","CT","DE","FL","GA","HI","IA","ID","IL","IN",
+"KS","KY","LA","MA","MD","ME","MI","MN","MO","MS","MT","NC","ND","NE","NH",
+"NJ","NM","NV","NY","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VA",
+"VT","WA","WI","WV","WY"
+  ];
+    const waveTypes = [
+        "Reef Break", "Beach Break", "Point Break"
+    ];
     // const dispatch = useDispatch();
     // const history = useHistory();
     const [name, setName] = useState('');
     const [country, setCountry] = useState('');
-    // const [no, setNo] = useState(1);
-    // const [attack, setAttack] = useState('');
-    // const [defense, setDefense] = useState('');
-    // const [imageUrl, setImageUrl] = useState('');
-    // const [type, setType] = useState(pokeTypes[0]);
-    // const [move1, setMove1] = useState('');
-    // const [move2, setMove2] = useState('');
+    const [state, setState] = useState('');
+    const [city, setCity] = useState('');
+    const [secretSpot, setSecretSpot] = useState('no');
+    const [latitude, setLatitude] = useState('');
+    const [longitude, setLongitude] = useState('');
+    const [zipcode, setZipcode] = useState('');
+    const [waveType, setWaveType] = useState('');
 
     const updateName = (e) => setName(e.target.value);
     const updateCountry = (e) => setCountry(e.target.value);
-    // const updateNo = (e) => setNo(e.target.value);
-    // const updateAttack = (e) => setAttack(e.target.value);
-    // const updateDefense = (e) => setDefense(e.target.value);
-    // const updateImageUrl = (e) => setImageUrl(e.target.value);
-    // const updateType = (e) => setType(e.target.value);
-    // const updateMove1 = (e) => setMove1(e.target.value);
-    // const updateMove2 = (e) => setMove2(e.target.value);
+    const updateState = (e) => setState(e.target.value);
+    const updateCity = (e) => setCity(e.target.value);
+    const updateLatitude = (e) => setLatitude(e.target.value);
+    const updateLongitude = (e) => setLongitude(e.target.value);
+    const updateZipcode = (e) => setZipcode(e.target.value);
+    const updateWaveType = (e) => setWaveType(e.target.value);
 
     // useEffect(() => {
     //     dispatch(getPokemonTypes());
@@ -59,176 +67,95 @@ function CreateSurfBreakFormPage(){
         // }
     };
 
-    // const handleCancelClick = (e) => {
-    //     e.preventDefault();
-    //     hideForm();
-    // };
+    const handleCancelClick = (e) => {
+        e.preventDefault();
+    };
 
     return (
-        <>
-    <h1>Create A Surf Break</h1>
-    <section className="new-form-holder centered middled">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={updateName} />
-        <input
-          type="text"
-          placeholder="Country"
-          value={country}
-          onChange={updateCountry} />
-        <input
-          type="number"
-          placeholder="Number"
-          min="1"
-          required
-          value={no}
-          onChange={updateNo} />
-        <input
-          type="number"
-          placeholder="Attack"
-          min="0"
-          max="100"
-          required
-          value={attack}
-          onChange={updateAttack} />
-        <input
-          type="number"
-          placeholder="Defense"
-          min="0"
-          max="100"
-          required
-          value={defense}
-          onChange={updateDefense} />
-        <input
-          type="text"
-          placeholder="Image URL"
-          value={imageUrl}
-          onChange={updateImageUrl} />
-        <input
-          type="text"
-          placeholder="Move 1"
-          value={move1}
-          onChange={updateMove1} />
-        <input
-          type="text"
-          placeholder="Move 2"
-          value={move2}
-          onChange={updateMove2} />
-        <select onChange={updateType} value={type}>
-          {pokeTypes.map(type =>
-            <option key={type}>{type}</option>
-          )}
-        </select>
-        <button type="submit">Create new Pokemon</button>
-        <button type="button" onClick={handleCancelClick}>Cancel</button>
-      </form>
-    </section><input
-          type="number"
-          placeholder="Number"
-          min="1"
-          required
-          value={no}
-          onChange={updateNo} />
-        <input
-          type="number"
-          placeholder="Attack"
-          min="0"
-          max="100"
-          required
-          value={attack}
-          onChange={updateAttack} />
-        <input
-          type="number"
-          placeholder="Defense"
-          min="0"
-          max="100"
-          required
-          value={defense}
-          onChange={updateDefense} />
-        <input
-          type="text"
-          placeholder="Image URL"
-          value={imageUrl}
-          onChange={updateImageUrl} />
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={updateName} />
-        <input
-          type="text"
-          placeholder="Move 1"
-          value={move1}
-          onChange={updateMove1} />
-        <input
-          type="text"
-          placeholder="Move 2"
-          value={move2}
-          onChange={updateMove2} />
-        <select onChange={updateType} value={type}>
-          {pokeTypes.map(type =>
-            <option key={type}>{type}</option>
-          )}
-        </select>
-        <button type="submit">Create new Pokemon</button>
-        <button type="button" onClick={handleCancelClick}>Cancel</button>
-      </form>
-    </section>
-        <input
-          type="number"
-          placeholder="Number"
-          min="1"
-          required
-          value={no}
-          onChange={updateNo} />
-        <input
-          type="number"
-          placeholder="Attack"
-          min="0"
-          max="100"
-          required
-          value={attack}
-          onChange={updateAttack} />
-        <input
-          type="number"
-          placeholder="Defense"
-          min="0"
-          max="100"
-          required
-          value={defense}
-          onChange={updateDefense} />
-        <input
-          type="text"
-          placeholder="Image URL"
-          value={imageUrl}
-          onChange={updateImageUrl} />
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={updateName} />
-        <input
-          type="text"
-          placeholder="Move 1"
-          value={move1}
-          onChange={updateMove1} />
-        <input
-          type="text"
-          placeholder="Move 2"
-          value={move2}
-          onChange={updateMove2} />
-        <select onChange={updateType} value={type}>
-          {pokeTypes.map(type =>
-            <option key={type}>{type}</option>
-          )}
-        </select>
-        <button type="submit">Create new Pokemon</button>
-        <button type="button" onClick={handleCancelClick}>Cancel</button>
-      </form>
-    </section>
+    <>
+        <h1>Create A Surf Break</h1>
+        <section className="new-form-holder centered middled">
+            <form onSubmit={handleSubmit}>
+                <input
+                type="text"
+                placeholder="Name"
+                required
+                value={name}
+                onChange={updateName} />
+                <input
+                type="text"
+                placeholder="Country"
+                required
+                value={country}
+                onChange={updateCountry} />
+                <label> State
+                    <select value={state} onChange={updateState}>
+                    {states.map(state =>{
+                        return (
+                            <option value={state}>{state}</option>
+                            )
+                            })}
+                    </select>
+                </label>
+                <input
+                type="text"
+                placeholder="City"
+                required
+                value={city}
+                onChange={updateCity} />
+                <label>
+                    <input
+                    type="radio"
+                    value="no"
+                    name="secretSpot"
+                    checked={secretSpot === 'no'}
+                    onChange={e => setSecretSpot(e.target.value)}
+                    />
+                Not Secret
+                </label>
+                <label>
+                    <input
+                    type="radio"
+                    value="yes"
+                    name="secretSpot"
+                    checked={secretSpot === 'yes'}
+                    onChange={e => setSecretSpot(e.target.value)}
+                    />
+                Secret Spot
+                </label>
+                <input
+                type="number"
+                placeholder="Latitude"
+                min="-90"
+                max="90"
+                required
+                value={latitude}
+                onChange={updateLatitude} />
+                <input
+                type="number"
+                placeholder="Longitude"
+                min="-180"
+                max="180"
+                required
+                value={longitude}
+                onChange={updateLongitude} />
+                <input
+                type="number"
+                placeholder="Zipcode"
+                required
+                value={zipcode}
+                onChange={updateZipcode} />
+                <label> Wave Type
+                    <select onChange={updateWaveType} value={waveType}>
+                    {waveTypes.map(wave =>
+                        <option key={wave}>{wave}</option>
+                    )}
+                    </select>
+                </label>
+                <button type="submit">Create New Surf Break</button>
+                <button type="button" onClick={handleCancelClick}>Cancel</button>
+            </form>
+        </section>
     </>
     )
 }
