@@ -73,90 +73,118 @@ function CreateSurfBreakFormPage(){
 
     return (
     <>
-        <h1>Create A Surf Break</h1>
-            <section className="container p-6 max-w-xl mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4">
+         <section className="container p-6 max-w-xl mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4">
             <div>
-                <form onSubmit={handleSubmit} className="bg-gray-100">
-                    <input
-                    type="text"
-                    placeholder="Name"
-                    required
-                    value={name}
-                    onChange={updateName} />
-                    <input
-                    type="text"
-                    placeholder="Country"
-                    required
-                    value={country}
-                    onChange={updateCountry} />
-                    <label> State
+                <h1 className="text-4xl flex justify-center">Create a Surf Break</h1>
+                <form onSubmit={handleSubmit} className="">
+                    <div className="p-4 flex space-x-48">
+                        <label>Name</label>
+                        <input
+                        className="bg-gray-100 rounded-md m-2"
+                        type="text"
+                        placeholder="Name"
+                        required
+                        value={name}
+                        onChange={updateName} />
+                    </div>
+                    <div className="p-4 flex space-x-48">
+                        <label>Country</label>
+                        <select onChange={updateCountry} value={country}>
+                            <option key={country}>United States of America</option>
+                        </select>
+                    </div>
+                    <div className="p-4 flex space-x-48">
+                            <label> State</label>
                         <select value={state} onChange={updateState}>
                         {states.map(state =>{
                             return (
                                 <option value={state} key={state}>{state}</option>
-                                )
-                                })}
+                            )
+                        })}
                         </select>
-                    </label>
-                    <input
-                    type="text"
-                    placeholder="City"
-                    required
-                    value={city}
-                    onChange={updateCity} />
-                    <label>
+                    </div>
+                    <div className="p-4 flex space-x-48">
+                        <label>City</label>
                         <input
-                        type="radio"
-                        value="no"
-                        name="secretSpot"
-                        checked={secretSpot === 'no'}
-                        onChange={e => setSecretSpot(e.target.value)}
-                        />
-                    Not Secret
-                    </label>
-                    <label>
+                        className="bg-gray-100 rounded-md m-2"
+                        type="text"
+                        placeholder="City"
+                        required
+                        value={city}
+                        onChange={updateCity} />
+                    </div>
+                    <label>Secret Spot?</label>
+                    <div className="p-4 flex space-x-48">
+                        <label>
+                            <input
+                            type="radio"
+                            value="no"
+                            name="secretSpot"
+                            checked={secretSpot === 'no'}
+                            onChange={e => setSecretSpot(e.target.value)}
+                            />
+                        No
+                        </label>
+                        <label>
+                            <input
+                            type="radio"
+                            value="yes"
+                            name="secretSpot"
+                            checked={secretSpot === 'yes'}
+                            onChange={e => setSecretSpot(e.target.value)}
+                            />
+                        Yes
+                        </label>
+                    </div>
+                    <div className="p-4 flex space-x-48">
+                        <label>Latitude</label>
                         <input
-                        type="radio"
-                        value="yes"
-                        name="secretSpot"
-                        checked={secretSpot === 'yes'}
-                        onChange={e => setSecretSpot(e.target.value)}
-                        />
-                    Secret Spot
-                    </label>
-                    <input
-                    type="number"
-                    placeholder="Latitude"
-                    min="-90"
-                    max="90"
-                    required
-                    value={latitude}
-                    onChange={updateLatitude} />
-                    <input
-                    type="number"
-                    placeholder="Longitude"
-                    min="-180"
-                    max="180"
-                    required
-                    value={longitude}
-                    onChange={updateLongitude} />
-                    <input
-                    type="number"
-                    placeholder="Zipcode"
-                    required
-                    value={zipcode}
-                    onChange={updateZipcode} />
-                    <label> Wave Type
-                        <select onChange={updateWaveType} value={waveType}>
-                        {waveTypes.map(wave =>
-                            <option key={wave}>{wave}</option>
-                        )}
-                        </select>
-                    </label>
-                        <button type="submit" className="hover:bg-blue-300">Create New Surf Break</button>
-                        <button type="button" onClick={handleCancelClick} className="hover:bg-blue-300">
-                    Cancel
-                    </button>
+                        className="bg-gray-100 rounded-md m-2"
+                        type="number"
+                        placeholder="Latitude"
+                        min="-90"
+                        max="90"
+                        required
+                        value={latitude}
+                        onChange={updateLatitude} />
+                    </div>
+                    <div className="p-4 flex space-x-48">
+                        <label>Longitude</label>
+                        <input
+                        className="bg-gray-100 rounded-md m-2"
+                        type="number"
+                        placeholder="Longitude"
+                        min="-180"
+                        max="180"
+                        required
+                        value={longitude}
+                        onChange={updateLongitude} />
+                    </div>
+                    <div className="p-4 flex space-x-48">
+                        <label>Zipcode</label>
+                        <input
+                        className="bg-gray-100 rounded-md m-2"
+                        type="number"
+                        placeholder="Zipcode"
+                        required
+                        value={zipcode}
+                        onChange={updateZipcode} />
+                    </div>
+                    <div className="p-4 flex space-x-48">
+                        <label>Wave Type</label>
+                            <select onChange={updateWaveType} value={waveType}>
+                            {waveTypes.map(wave =>
+                                <option key={wave}>{wave}</option>
+                            )}
+                            </select>
+                    </div>
+                    <div className="pt-4 flex space-x-48">
+                        <button type="button" onClick={handleCancelClick} className=" bg-gray-400 flex justify-center items-center w-1/3 text-white px-4 py-3 m-1 rounded-md hover:bg-gray-300">
+                            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        Cancel
+                        </button>
+                        <button type="submit" className="bg-blue-500 flex justify-center items-center w-1/3 text-white px-4 py-3 m-1 rounded-md focus:outline-none hover:bg-blue-300">Create</button>
+                    </div>
                 </form>
             </div>
         </section>
