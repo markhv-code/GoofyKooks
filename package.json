@@ -10,9 +10,7 @@
     "dev:frontend": "npm install --prefix frontend start",
     "sequelize": "npm run --prefix backend sequelize",
     "sequelize-cli": "npm run --prefix backend sequelize-cli",
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test"
+    "start": "npm start --prefix backend"
   },
   "repository": {
     "type": "git",
@@ -24,11 +22,5 @@
     "url": "https://github.com/markhv-code/auth_me/issues"
   },
   "homepage": "https://github.com/markhv-code/auth_me#readme",
-  "dependencies": {
-    "@craco/craco": "^6.0.0",
-    "@tailwindcss/postcss7-compat": "^2.0.2",
-    "autoprefixer": "^9.8.6",
-    "postcss": "^7.0.35",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
-  }
+  "dependencies": {}
 }
