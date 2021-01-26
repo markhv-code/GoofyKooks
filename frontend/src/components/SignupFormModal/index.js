@@ -7,10 +7,10 @@ function SignupFormModal() {
 
     return (
         <>
-            <button onClick={() => setShowModal(true)}>Sign Up</button>
+            <button onClick={() => setShowModal(true)} className="p-1 hover:text-gray-400 m-2">Sign Up</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <SignupForm />
+                    <SignupForm/>
                 </Modal>
             )}
         </>

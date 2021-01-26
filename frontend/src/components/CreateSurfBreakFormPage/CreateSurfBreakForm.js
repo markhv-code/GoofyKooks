@@ -74,87 +74,91 @@ function CreateSurfBreakFormPage(){
     return (
     <>
         <h1>Create A Surf Break</h1>
-        <section className="new-form-holder centered middled">
-            <form onSubmit={handleSubmit}>
-                <input
-                type="text"
-                placeholder="Name"
-                required
-                value={name}
-                onChange={updateName} />
-                <input
-                type="text"
-                placeholder="Country"
-                required
-                value={country}
-                onChange={updateCountry} />
-                <label> State
-                    <select value={state} onChange={updateState}>
-                    {states.map(state =>{
-                        return (
-                            <option value={state}>{state}</option>
-                            )
-                            })}
-                    </select>
-                </label>
-                <input
-                type="text"
-                placeholder="City"
-                required
-                value={city}
-                onChange={updateCity} />
-                <label>
+            <section className="container p-6 max-w-xl mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4">
+            <div>
+                <form onSubmit={handleSubmit} className="bg-gray-100">
                     <input
-                    type="radio"
-                    value="no"
-                    name="secretSpot"
-                    checked={secretSpot === 'no'}
-                    onChange={e => setSecretSpot(e.target.value)}
-                    />
-                Not Secret
-                </label>
-                <label>
+                    type="text"
+                    placeholder="Name"
+                    required
+                    value={name}
+                    onChange={updateName} />
                     <input
-                    type="radio"
-                    value="yes"
-                    name="secretSpot"
-                    checked={secretSpot === 'yes'}
-                    onChange={e => setSecretSpot(e.target.value)}
-                    />
-                Secret Spot
-                </label>
-                <input
-                type="number"
-                placeholder="Latitude"
-                min="-90"
-                max="90"
-                required
-                value={latitude}
-                onChange={updateLatitude} />
-                <input
-                type="number"
-                placeholder="Longitude"
-                min="-180"
-                max="180"
-                required
-                value={longitude}
-                onChange={updateLongitude} />
-                <input
-                type="number"
-                placeholder="Zipcode"
-                required
-                value={zipcode}
-                onChange={updateZipcode} />
-                <label> Wave Type
-                    <select onChange={updateWaveType} value={waveType}>
-                    {waveTypes.map(wave =>
-                        <option key={wave}>{wave}</option>
-                    )}
-                    </select>
-                </label>
-                <button type="submit">Create New Surf Break</button>
-                <button type="button" onClick={handleCancelClick}>Cancel</button>
-            </form>
+                    type="text"
+                    placeholder="Country"
+                    required
+                    value={country}
+                    onChange={updateCountry} />
+                    <label> State
+                        <select value={state} onChange={updateState}>
+                        {states.map(state =>{
+                            return (
+                                <option value={state} key={state}>{state}</option>
+                                )
+                                })}
+                        </select>
+                    </label>
+                    <input
+                    type="text"
+                    placeholder="City"
+                    required
+                    value={city}
+                    onChange={updateCity} />
+                    <label>
+                        <input
+                        type="radio"
+                        value="no"
+                        name="secretSpot"
+                        checked={secretSpot === 'no'}
+                        onChange={e => setSecretSpot(e.target.value)}
+                        />
+                    Not Secret
+                    </label>
+                    <label>
+                        <input
+                        type="radio"
+                        value="yes"
+                        name="secretSpot"
+                        checked={secretSpot === 'yes'}
+                        onChange={e => setSecretSpot(e.target.value)}
+                        />
+                    Secret Spot
+                    </label>
+                    <input
+                    type="number"
+                    placeholder="Latitude"
+                    min="-90"
+                    max="90"
+                    required
+                    value={latitude}
+                    onChange={updateLatitude} />
+                    <input
+                    type="number"
+                    placeholder="Longitude"
+                    min="-180"
+                    max="180"
+                    required
+                    value={longitude}
+                    onChange={updateLongitude} />
+                    <input
+                    type="number"
+                    placeholder="Zipcode"
+                    required
+                    value={zipcode}
+                    onChange={updateZipcode} />
+                    <label> Wave Type
+                        <select onChange={updateWaveType} value={waveType}>
+                        {waveTypes.map(wave =>
+                            <option key={wave}>{wave}</option>
+                        )}
+                        </select>
+                    </label>
+                        <button type="submit" className="hover:bg-blue-300">Create New Surf Break</button>
+                        <button type="button" onClick={handleCancelClick} className="hover:bg-blue-300">
+                    Cancel
+                    </button>
+                </form>
+            </div>
         </section>
     </>
     )
