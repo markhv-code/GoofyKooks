@@ -80,6 +80,7 @@ function CreateSurfBreakFormPage(){
                     <div className="p-4 flex space-x-48">
                         <label>Name</label>
                         <input
+                        className="bg-gray-100 rounded-md m-2"
                         type="text"
                         placeholder="Name"
                         required
@@ -88,27 +89,24 @@ function CreateSurfBreakFormPage(){
                     </div>
                     <div className="p-4 flex space-x-48">
                         <label>Country</label>
-                        <input
-                        type="text"
-                        placeholder="Country"
-                        required
-                        value={country}
-                        onChange={updateCountry} />
+                        <select onChange={updateCountry} value={country}>
+                            <option key={country}>United States of America</option>
+                        </select>
                     </div>
                     <div className="p-4 flex space-x-48">
-                        <label> State
-                            <select value={state} onChange={updateState}>
-                            {states.map(state =>{
-                                return (
-                                    <option value={state} key={state}>{state}</option>
-                                    )
-                                    })}
-                            </select>
-                        </label>
+                            <label> State</label>
+                        <select value={state} onChange={updateState}>
+                        {states.map(state =>{
+                            return (
+                                <option value={state} key={state}>{state}</option>
+                            )
+                        })}
+                        </select>
                     </div>
                     <div className="p-4 flex space-x-48">
                         <label>City</label>
                         <input
+                        className="bg-gray-100 rounded-md m-2"
                         type="text"
                         placeholder="City"
                         required
@@ -141,6 +139,7 @@ function CreateSurfBreakFormPage(){
                     <div className="p-4 flex space-x-48">
                         <label>Latitude</label>
                         <input
+                        className="bg-gray-100 rounded-md m-2"
                         type="number"
                         placeholder="Latitude"
                         min="-90"
@@ -152,6 +151,7 @@ function CreateSurfBreakFormPage(){
                     <div className="p-4 flex space-x-48">
                         <label>Longitude</label>
                         <input
+                        className="bg-gray-100 rounded-md m-2"
                         type="number"
                         placeholder="Longitude"
                         min="-180"
@@ -163,6 +163,7 @@ function CreateSurfBreakFormPage(){
                     <div className="p-4 flex space-x-48">
                         <label>Zipcode</label>
                         <input
+                        className="bg-gray-100 rounded-md m-2"
                         type="number"
                         placeholder="Zipcode"
                         required
@@ -170,13 +171,12 @@ function CreateSurfBreakFormPage(){
                         onChange={updateZipcode} />
                     </div>
                     <div className="p-4 flex space-x-48">
-                        <label> Wave Type
+                        <label>Wave Type</label>
                             <select onChange={updateWaveType} value={waveType}>
                             {waveTypes.map(wave =>
                                 <option key={wave}>{wave}</option>
                             )}
                             </select>
-                        </label>
                     </div>
                     <div className="pt-4 flex space-x-48">
                         <button type="button" onClick={handleCancelClick} className=" bg-gray-400 flex justify-center items-center w-1/3 text-white px-4 py-3 m-1 rounded-md hover:bg-gray-300">
