@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-// import CreateSurfBreakFormPage from '../CreateSurfBreakFormPage/CreateSurfBreakForm'
-
+import { useDispatch } from 'react-redux';
 const containerStyle = {
     width: '800px',
     height: '400px'
@@ -24,12 +23,15 @@ const onLoad = marker => {
 
  export let location;
 
-function Map() {
+function Map({ sendDataToParent }) {
+    const dispatch = useDispatch();
     let [location, setLocation] = useState(position);
 
-    // const updateLocation = (e) => console.log(e.latLng.lat(), "latitude", e.latLng.lng(), "longitude");
-    const updateLocation = (e) => setLocation({lat: e.latLng.lat(), lng: e.latLng.lng()});
+    // setLocation = (e) => console.log(e.latLng.lat(), "latitude", e.latLng.lng(), "longitude");
+    // const updateLocation = (e) => setLocation({lat: e.latLng.lat(), lng: e.latLng.lng()});
+    useEffect(() =>{
 
+    }, [dispatch, location])
 
     return (
         <div className="w-full flex justify-center">
@@ -47,7 +49,10 @@ function Map() {
                         onLoad={onLoad}
                         position={location}
                         draggable={true}
-                        onDragEnd={updateLocation}
+                        onDragEnd={(e) => {
+                            sendDataToParent(setLocation({ lat: e.latLng.lat(), lng: e.latLng.lng() }));
+
+                        }} //this is where it needs to be passed
                         
                     />
                     </>

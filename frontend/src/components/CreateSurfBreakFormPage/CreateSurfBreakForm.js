@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createSurfBreak } from '../../store/surfBreak';
 import { useHistory } from 'react-router-dom';
+import Map from "../Map/Map";
 
 
-
-function CreateSurfBreakFormPage({location}){
-    console.log(location, "location");
+function CreateSurfBreakFormPage(){
+    // console.log(location, "location");
     const states = [
 "AK","AL","AR","AZ","CA","CO","CT","DE","FL","GA","HI","IA","ID","IL","IN",
 "KS","KY","LA","MA","MD","ME","MI","MN","MO","MS","MT","NC","ND","NE","NH",
@@ -23,17 +23,24 @@ function CreateSurfBreakFormPage({location}){
     const [state, setState] = useState('');
     const [city, setCity] = useState('');
     const [secretSpot, setSecretSpot] = useState('no');
-    const [latitude, setLatitude] = useState('');
-    const [longitude, setLongitude] = useState('');
+    // const [latitude, setLatitude] = useState('');
+    // const [longitude, setLongitude] = useState('');
+    const [position, setPosition] = useState({
+        lat: 21.649413,
+        lng: -157.927923 })
     const [zipcode, setZipcode] = useState('');
     const [waveType, setWaveType] = useState('');
+
+    const sendDataToParent = (index) => { // the callback. Use a better name
+        console.log(index, "index");
+        setPosition(index);
+    };
 
     const updateName = (e) => setName(e.target.value);
     const updateCountry = (e) => setCountry(e.target.value);
     const updateState = (e) => setState(e.target.value);
     const updateCity = (e) => setCity(e.target.value);
-    const updateLatitude = (e) => setLatitude(e.target.value);
-    const updateLongitude = (e) => setLongitude(e.target.value);
+    const updatePosition = (e) => setPosition({ lat: e.latLng.lat(), lng: e.latLng.lng() })
     const updateZipcode = (e) => setZipcode(e.target.value);
     const updateWaveType = (e) => setWaveType(e.target.value);
 
@@ -45,8 +52,8 @@ function CreateSurfBreakFormPage({location}){
             country,
             state,
             city,
-            latitude,
-            longitude,
+            // latitude,
+            // longitude,
             zipcode,
             waveType,
         };
@@ -63,7 +70,8 @@ function CreateSurfBreakFormPage({location}){
 
     return (
     <>
-         <section className="container p-6 max-w-xl mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4">
+        <Map sendDataToParent={sendDataToParent}></Map>
+        <section className="container p-6 max-w-xl mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4">
             <div>
                 <h1 className="text-4xl flex justify-center">Create a Surf Break</h1>
                 <form onSubmit={handleSubmit} className="">
@@ -80,7 +88,8 @@ function CreateSurfBreakFormPage({location}){
                     <div className="p-4 flex space-x-48">
                         <label>Country</label>
                         <select onChange={updateCountry} value={country}>
-                            <option key={country}>United States of America</option>
+                            <option key={1}>Australia</option>
+                            <option key={2}>United States of America</option>
                         </select>
                     </div>
                     <div className="p-4 flex space-x-48">
@@ -135,8 +144,9 @@ function CreateSurfBreakFormPage({location}){
                         min="-90"
                         max="90"
                         required
-                        value={latitude}
-                        onChange={updateLatitude} />
+                        value={position.lat}
+                        onChange={updatePosition} 
+                        />
                     </div>
                     <div className="p-4 flex space-x-48">
                         <label>Longitude</label>
@@ -147,8 +157,9 @@ function CreateSurfBreakFormPage({location}){
                         min="-180"
                         max="180"
                         required
-                        value={longitude}
-                        onChange={updateLongitude} />
+                        value={position.lng}
+                        onChange={updatePosition} 
+                        />
                     </div>
                     <div className="p-4 flex space-x-48">
                         <label>Zipcode</label>

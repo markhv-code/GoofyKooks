@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import CreateSurfBreakFormPage from "./components/CreateSurfBreakFormPage/CreateSurfBreakForm";
-import Map from "./components/Map/Map";
 import * as sessionActions from "./store/session";
+import { useDispatch } from 'react-redux';
+import CreateSurfBreakFormPage from "./components/CreateSurfBreakFormPage/CreateSurfBreakForm";
+
+
 import Navigation from "./components/Navigation";
 import location from "./components/Map/Map";
 
@@ -22,7 +23,6 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route path="/surf_breaks/new">
-            <Map></Map>
             <CreateSurfBreakFormPage location={location}/>
           </Route>
         </Switch>
