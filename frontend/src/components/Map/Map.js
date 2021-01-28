@@ -17,7 +17,6 @@ const position = {
 }
 
 function Map({ sendDataToParent }) {
-    console.log(process.env.REACT_APP_MAPAPI, "api-key")
     return (
         <div className="w-full flex justify-center">
             <LoadScript

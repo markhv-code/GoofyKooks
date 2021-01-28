@@ -27,13 +27,15 @@ function CreateSurfBreakFormPage(){
     const [zipcode, setZipcode] = useState('');
     const [waveType, setWaveType] = useState('');
 
-    let latitude;
-    let longitude;
+    // let latitude;
+    // let longitude;
 
     const sendDataToParent = (index) => {
+        console.log(index[0], "lat", index[1], "lng")
         setPosition({lat: index[0], lng: index[1]});
-        latitude = index[0];
-        longitude = index[1];
+        console.log("postition", position)
+        // latitude = index[0];
+        // longitude = index[1];
     };
 
 
@@ -46,6 +48,10 @@ function CreateSurfBreakFormPage(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // console.log("lat", latitude, "lng", longitude);
+        console.log("position", position);
+        const latitude = position.lat;
+        const longitude = position.lng;
 
         const payload = {
             name,
@@ -57,7 +63,7 @@ function CreateSurfBreakFormPage(){
             zipcode,
             waveType,
         };
-
+        console.log("payload", payload)
         const surfBreak = await dispatch(createSurfBreak(payload));
         if (surfBreak) {
             history.push(`/pokemon/${surfBreak.id}`);
