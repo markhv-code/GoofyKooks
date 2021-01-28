@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 const containerStyle = {
@@ -13,20 +12,11 @@ const center = {
 };
 
 const position = {
-    lat: 21.649413,
-    lng: -157.927923
+    lat: 21.466770194373073,
+    lng: -157.99658755078124
 }
 
-const onLoad = marker => {
-    console.log('marker: ', marker)
-}
-
-function Map() {
-    const [location, setLocation] = useState(position);
-
-    // const updateLocation = (e) => console.log(e.latLng.lat(), "latitude", e.latLng.lng(), "longitude");
-    const updateLocation = (e) => setLocation({lat: e.latLng.lat(), lng: e.latLng.lng()});
-
+function Map({ sendDataToParent }) {
 
     return (
         <div className="w-full flex justify-center">
@@ -38,13 +28,13 @@ function Map() {
                     center={center}
                     zoom={10}
                 >
-                    { /* Child components, such as markers, info windows, etc. */}
                     <>
                     <Marker
-                        onLoad={onLoad}
-                        position={location}
+                        position={position}
                         draggable={true}
-                        onDragEnd={updateLocation}
+                        onDragEnd={(e) => {
+                            sendDataToParent([e.latLng.lat(), e.latLng.lng()]);
+                        }} 
                         
                     />
                     </>
