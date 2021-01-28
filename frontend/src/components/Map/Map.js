@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+// import CreateSurfBreakFormPage from '../CreateSurfBreakFormPage/CreateSurfBreakForm'
 
 const containerStyle = {
     width: '800px',
@@ -21,8 +22,10 @@ const onLoad = marker => {
     console.log('marker: ', marker)
 }
 
+ export let location;
+
 function Map() {
-    const [location, setLocation] = useState(position);
+    let [location, setLocation] = useState(position);
 
     // const updateLocation = (e) => console.log(e.latLng.lat(), "latitude", e.latLng.lng(), "longitude");
     const updateLocation = (e) => setLocation({lat: e.latLng.lat(), lng: e.latLng.lng()});

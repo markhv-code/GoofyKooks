@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-// import { createPokemon, getPokemonTypes } from '../store/pokemon';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createSurfBreak } from '../../store/surfBreak';
 import { useHistory } from 'react-router-dom';
 
 
-function CreateSurfBreakFormPage(){
+
+function CreateSurfBreakFormPage({location}){
+    console.log(location, "location");
     const states = [
 "AK","AL","AR","AZ","CA","CO","CT","DE","FL","GA","HI","IA","ID","IL","IN",
 "KS","KY","LA","MA","MD","ME","MI","MN","MO","MS","MT","NC","ND","NE","NH",
@@ -14,8 +16,8 @@ function CreateSurfBreakFormPage(){
     const waveTypes = [
         "Reef Break", "Beach Break", "Point Break"
     ];
-    // const dispatch = useDispatch();
-    // const history = useHistory();
+    const dispatch = useDispatch();
+    const history = useHistory();
     const [name, setName] = useState('');
     const [country, setCountry] = useState('');
     const [state, setState] = useState('');
@@ -35,36 +37,24 @@ function CreateSurfBreakFormPage(){
     const updateZipcode = (e) => setZipcode(e.target.value);
     const updateWaveType = (e) => setWaveType(e.target.value);
 
-    // useEffect(() => {
-    //     dispatch(getPokemonTypes());
-    // }, [dispatch]);
-
-    // useEffect(() => {
-    //     if (pokeTypes.length && !type) {
-    //         setType(pokeTypes[0]);
-    //     }
-    // }, [pokeTypes, type]);
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // const payload = {
-        //     no,
-        //     attack,
-        //     defense,
-        //     imageUrl,
-        //     name,
-        //     type,
-        //     move1,
-        //     move2,
-        //     moves: [move1, move2],
-        // };
+        const payload = {
+            name,
+            country,
+            state,
+            city,
+            latitude,
+            longitude,
+            zipcode,
+            waveType,
+        };
 
-        // const pokemon = await dispatch(createPokemon(payload));
-        // if (pokemon) {
-        //     history.push(`/pokemon/${pokemon.id}`);
-        //     hideForm();
-        // }
+        const surfBreak = await dispatch(createSurfBreak(payload));
+        if (surfBreak) {
+            history.push(`/pokemon/${surfBreak.id}`);
+        }
     };
 
     const handleCancelClick = (e) => {

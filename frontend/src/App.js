@@ -5,6 +5,9 @@ import CreateSurfBreakFormPage from "./components/CreateSurfBreakFormPage/Create
 import Map from "./components/Map/Map";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import location from "./components/Map/Map";
+
+// const { location } = updateLocation();
 
 function App() {
   const dispatch = useDispatch();
@@ -20,7 +23,7 @@ function App() {
         <Switch>
           <Route path="/surf_breaks/new">
             <Map></Map>
-            <CreateSurfBreakFormPage />
+            <CreateSurfBreakFormPage location={location}/>
           </Route>
         </Switch>
       )}

@@ -10,3 +10,85 @@ const addOneSurfBreak = surfBreak => ({
     type: ADD_ONE,
     surfBreak,
 });
+
+export const createSurfBreak = data => async dispatch => {
+    const response = await fetch(`/api/surfBreaks`, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    });
+
+    if(response.ok){
+        const surfBreak = await response.json();
+        dispatch(addOneSurfBreak(surfBreak));
+        return surfBreak;
+    }
+};
+
+export const getOneSurfBreak = id => async dispatch => {
+    const response = await fetch(`/api/${id}`);
+
+    if(response.ok){
+        const surfBreak = await response.json();
+        dispatch(addOneSurfBreak(surfBreak));
+    }
+};
+
+export const getSurfBreaks = () => async dispatch => {
+    const response = await fetch(`/api/pokemon`);
+
+    if(response.ok){
+        const list = await response.json();
+        dispatch(load(list));
+    }
+};
+
+const sortList = (list) => {
+    return list.sort((surfBreakA, surfBreakB) => {
+        return surfBreakA.no - surfBreakB.no;
+    }).map((surfBreak) => surfBreak.id);
+};
+
+const initialState = {
+    list: []
+}
+const surfBreakReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case LOAD: {
+            const allBreaks = {};
+            action.list.forEach(surfBreak => {
+                allBreaks[surfBreak.id] = surfBreak;
+            });
+            return {
+                ...allBreaks,
+                ...state,
+                list: sortList(action.list),
+            };
+        }
+        case ADD_ONE: {
+            if (!state[action.surfBreak.id]) {
+                const newState = {
+                    ...state,
+                    [action.surfBreak.id]: action.surfBreak
+                };
+                const surfBreakList = newState.list.map(id => newState[id]);
+                surfBreakList.push(action.surfBreak);
+                newState.list = sortList(surfBreakList);
+                return newState;
+            }
+            return {
+                ...state,
+                [action.surfBreak.id]: {
+                    ...state[action.surfBreak.id],
+                    ...action.surfBreak,
+                }
+            };
+        }
+        default:
+            return state;
+    }
+}
+
+export default surfBreakReducer;
