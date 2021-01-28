@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   surfBreak.associate = function(models) {
-    SurfBreak.hasMany(models.Review, { foreignKey: 'breakId' });
+    // surfBreak.hasMany(models.Review, { foreignKey: 'breakId' });
   };
   return surfBreak;
 };
