@@ -31,10 +31,19 @@ function CreateSurfBreakFormPage(){
     const [zipcode, setZipcode] = useState('');
     const [waveType, setWaveType] = useState('');
 
+    let latitude;
+    let longitude;
+
     const sendDataToParent = (index) => { // the callback. Use a better name
-        console.log(index, "index");
-        setPosition(index);
+        // const { lat, lng } = index;
+        console.log(index[0], "index", index[1]);
+        console.log(position, "position before")
+        setPosition({lat: index[0], lng: index[1]});
+        console.log(position, "positionafter")
+        latitude = index[0];
+        longitude = index[1];
     };
+
 
     const updateName = (e) => setName(e.target.value);
     const updateCountry = (e) => setCountry(e.target.value);
@@ -138,27 +147,27 @@ function CreateSurfBreakFormPage(){
                     <div className="p-4 flex space-x-48">
                         <label>Latitude</label>
                         <input
-                        className="bg-gray-100 rounded-md m-2"
-                        type="number"
-                        placeholder="Latitude"
-                        min="-90"
-                        max="90"
-                        required
-                        value={position.lat}
-                        onChange={updatePosition} 
-                        />
+                            className="bg-gray-100 rounded-md m-2 w-1/2"
+                            type="number"
+                            placeholder="Longitude"
+                            min="-180"
+                            max="180"
+                            required
+                            value={position.lat}
+                            // onChange={updatePosition} 
+                            />
                     </div>
                     <div className="p-4 flex space-x-48">
                         <label>Longitude</label>
                         <input
-                        className="bg-gray-100 rounded-md m-2"
+                        className="bg-gray-100 rounded-md m-2 w-1/2"
                         type="number"
                         placeholder="Longitude"
                         min="-180"
                         max="180"
                         required
                         value={position.lng}
-                        onChange={updatePosition} 
+                        // onChange={updatePosition} 
                         />
                     </div>
                     <div className="p-4 flex space-x-48">

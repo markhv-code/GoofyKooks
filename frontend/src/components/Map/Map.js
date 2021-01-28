@@ -18,16 +18,16 @@ const position = {
 }
 
 const onLoad = marker => {
-    console.log('marker: ', marker)
+    console.log('marker: ', marker.position.lat())
 }
 
  export let location;
 
 function Map({ sendDataToParent }) {
     const dispatch = useDispatch();
-    let [location, setLocation] = useState(position);
+    let [location, setLocation] = useState();
 
-    // setLocation = (e) => console.log(e.latLng.lat(), "latitude", e.latLng.lng(), "longitude");
+   const updateLocation = (e) => console.log(e.latLng.lat(), "latitude", e.latLng.lng(), "longitude");
     // const updateLocation = (e) => setLocation({lat: e.latLng.lat(), lng: e.latLng.lng()});
     useEffect(() =>{
 
@@ -47,11 +47,11 @@ function Map({ sendDataToParent }) {
                     <>
                     <Marker
                         onLoad={onLoad}
-                        position={location}
+                        position={position}
                         draggable={true}
                         onDragEnd={(e) => {
-                            sendDataToParent(setLocation({ lat: e.latLng.lat(), lng: e.latLng.lng() }));
-
+                            sendDataToParent([e.latLng.lat(), e.latLng.lng()]);
+                            updateLocation(e);
                         }} //this is where it needs to be passed
                         
                     />
