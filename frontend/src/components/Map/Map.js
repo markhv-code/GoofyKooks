@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-import { useDispatch } from 'react-redux';
+
 const containerStyle = {
     width: '800px',
     height: '400px'
@@ -13,25 +12,11 @@ const center = {
 };
 
 const position = {
-    lat: 21.649413,
-    lng: -157.927923
+    lat: 21.466770194373073,
+    lng: -157.99658755078124
 }
-
-const onLoad = marker => {
-    console.log('marker: ', marker.position.lat())
-}
-
- export let location;
 
 function Map({ sendDataToParent }) {
-    const dispatch = useDispatch();
-    let [location, setLocation] = useState();
-
-   const updateLocation = (e) => console.log(e.latLng.lat(), "latitude", e.latLng.lng(), "longitude");
-    // const updateLocation = (e) => setLocation({lat: e.latLng.lat(), lng: e.latLng.lng()});
-    useEffect(() =>{
-
-    }, [dispatch, location])
 
     return (
         <div className="w-full flex justify-center">
@@ -43,16 +28,13 @@ function Map({ sendDataToParent }) {
                     center={center}
                     zoom={10}
                 >
-                    { /* Child components, such as markers, info windows, etc. */}
                     <>
                     <Marker
-                        onLoad={onLoad}
                         position={position}
                         draggable={true}
                         onDragEnd={(e) => {
                             sendDataToParent([e.latLng.lat(), e.latLng.lng()]);
-                            updateLocation(e);
-                        }} //this is where it needs to be passed
+                        }} 
                         
                     />
                     </>

@@ -6,12 +6,12 @@ import Map from "../Map/Map";
 
 
 function CreateSurfBreakFormPage(){
-    // console.log(location, "location");
+    
     const states = [
-"AK","AL","AR","AZ","CA","CO","CT","DE","FL","GA","HI","IA","ID","IL","IN",
-"KS","KY","LA","MA","MD","ME","MI","MN","MO","MS","MT","NC","ND","NE","NH",
-"NJ","NM","NV","NY","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VA",
-"VT","WA","WI","WV","WY"
+    "AK","AL","AR","AZ","CA","CO","CT","DE","FL","GA","HI","IA","ID","IL","IN",
+    "KS","KY","LA","MA","MD","ME","MI","MN","MO","MS","MT","NC","ND","NE","NH",
+    "NJ","NM","NV","NY","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VA",
+    "VT","WA","WI","WV","WY"
   ];
     const waveTypes = [
         "Reef Break", "Beach Break", "Point Break"
@@ -23,23 +23,15 @@ function CreateSurfBreakFormPage(){
     const [state, setState] = useState('');
     const [city, setCity] = useState('');
     const [secretSpot, setSecretSpot] = useState('no');
-    // const [latitude, setLatitude] = useState('');
-    // const [longitude, setLongitude] = useState('');
-    const [position, setPosition] = useState({
-        lat: 21.649413,
-        lng: -157.927923 })
+    const [position, setPosition] = useState("")
     const [zipcode, setZipcode] = useState('');
     const [waveType, setWaveType] = useState('');
 
     let latitude;
     let longitude;
 
-    const sendDataToParent = (index) => { // the callback. Use a better name
-        // const { lat, lng } = index;
-        console.log(index[0], "index", index[1]);
-        console.log(position, "position before")
+    const sendDataToParent = (index) => {
         setPosition({lat: index[0], lng: index[1]});
-        console.log(position, "positionafter")
         latitude = index[0];
         longitude = index[1];
     };
@@ -49,7 +41,6 @@ function CreateSurfBreakFormPage(){
     const updateCountry = (e) => setCountry(e.target.value);
     const updateState = (e) => setState(e.target.value);
     const updateCity = (e) => setCity(e.target.value);
-    const updatePosition = (e) => setPosition({ lat: e.latLng.lat(), lng: e.latLng.lng() })
     const updateZipcode = (e) => setZipcode(e.target.value);
     const updateWaveType = (e) => setWaveType(e.target.value);
 
@@ -61,8 +52,8 @@ function CreateSurfBreakFormPage(){
             country,
             state,
             city,
-            // latitude,
-            // longitude,
+            latitude,
+            longitude,
             zipcode,
             waveType,
         };
@@ -150,11 +141,9 @@ function CreateSurfBreakFormPage(){
                             className="bg-gray-100 rounded-md m-2 w-1/2"
                             type="number"
                             placeholder="Longitude"
-                            min="-180"
-                            max="180"
+                            step="any"
                             required
-                            value={position.lat}
-                            // onChange={updatePosition} 
+                            value={position.lat} 
                             />
                     </div>
                     <div className="p-4 flex space-x-48">
@@ -163,11 +152,9 @@ function CreateSurfBreakFormPage(){
                         className="bg-gray-100 rounded-md m-2 w-1/2"
                         type="number"
                         placeholder="Longitude"
-                        min="-180"
-                        max="180"
+                        step="any"
                         required
                         value={position.lng}
-                        // onChange={updatePosition} 
                         />
                     </div>
                     <div className="p-4 flex space-x-48">
