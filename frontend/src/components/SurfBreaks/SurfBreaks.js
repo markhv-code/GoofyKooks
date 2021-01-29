@@ -12,10 +12,10 @@ function SurfBreaks() {
 
     return (
         <>
-        <h1>Surf Breaks</h1>
+            <h1 className="text-8xl flex justify-center">Surf Breaks</h1>
         {
             surfBreaks.map(surfBreak => (
-                <h1>{surfBreak.name}
+                <h1 className="text-2xl p-2 m-2">{surfBreak.name}
                     <ul>
                         <li key={`{surfBreak.country}`}>{surfBreak.country}</li>
                         <li key={`{surfBreak.state}`}>{surfBreak.state}</li>
