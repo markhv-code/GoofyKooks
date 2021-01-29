@@ -17,7 +17,6 @@ const position = {
 }
 
 function Map({ sendDataToParent }) {
-
     return (
         <div className="w-full flex justify-center">
             <LoadScript
