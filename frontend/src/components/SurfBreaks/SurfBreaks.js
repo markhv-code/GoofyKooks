@@ -12,7 +12,7 @@ function SurfBreaks() {
 
     return (
         <>
-        <h1>Hey there</h1>
+        <h1>Surf Breaks</h1>
         {
             surfBreaks.map(surfBreak => (
                 <h1>{surfBreak.name}

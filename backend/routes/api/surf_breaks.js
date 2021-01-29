@@ -31,7 +31,7 @@ const validateSignup = [
 
 router.get('/', asyncHandler(async function (req, res) {
     const surfBreaks = await db.surfBreak.findAll();
-    res.json(surfBreaks),
+    res.json(surfBreaks)
 }))
 
 router.get('/new', asyncHandler(async function (_req, res) {
