@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import { useDispatch } from 'react-redux';
 import CreateSurfBreakFormPage from "./components/CreateSurfBreakFormPage/CreateSurfBreakForm";
+import SurfBreaks from "./components/SurfBreaks/SurfBreaks";
 
 
 import Navigation from "./components/Navigation";
@@ -22,7 +23,10 @@ function App() {
       <Navigation isLoaded={isLoaded}/>
       {isLoaded && (
         <Switch>
-          <Route path="/surf_breaks/new">
+          <Route exact path="/surf_breaks">
+            <SurfBreaks/>
+          </Route>
+          <Route exact path="/surf_breaks/new">
             <CreateSurfBreakFormPage location={location}/>
           </Route>
         </Switch>

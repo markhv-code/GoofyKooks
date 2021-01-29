@@ -1,11 +1,11 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
-import sessionReducer  from "./session";
-import surfBreakReducer from "./surfBreak";
+import session from "./session";
+import surfBreak from "./surfBreak";
 
 const rootReducer = combineReducers({
-  session: sessionReducer,
-  surf: surfBreakReducer
+  session,
+  surfBreak
 });
 
 let enhancer;

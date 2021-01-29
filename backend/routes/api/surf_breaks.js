@@ -2,7 +2,8 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const db = require("../../db/models")
+// const { User, Surfbreak } = db;
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -28,13 +29,17 @@ const validateSignup = [
     handleValidationErrors,
 ];
 
+router.get('/', asyncHandler(async function (req, res) {
+    const surfBreaks = await db.surfBreak.findAll();
+    res.json(surfBreaks),
+}))
+
 router.get('/new', asyncHandler(async function (_req, res) {
     return res;
 }));
 
-// Sign up
 router.post(
-    '',
+    '/new',
     validateSignup,
     asyncHandler(async (req, res) => {
         const { email, password, username } = req.body;

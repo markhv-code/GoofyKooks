@@ -36,8 +36,8 @@ export const getOneSurfBreak = id => async dispatch => {
     }
 };
 
-export const getSurfBreaks = () => async dispatch => {
-    const response = await fetch(`/api/pokemon`);
+export const getSurfBreaks = () => async (dispatch) => {
+    const response = await fetch(`/api/surf_breaks`);
 
     if(response.ok){
         const list = await response.json();
@@ -51,10 +51,20 @@ const sortList = (list) => {
     }).map((surfBreak) => surfBreak.id);
 };
 
-const initialState = {
-    list: []
-}
+const initialState = { '0': 
+    { id: '0', 
+    name: 'spine',
+    country: 'brazil',
+    state: 'oh',
+    city: 'pops',
+    privatebreak: false,
+    latitude: 21.66024572394572,
+    longitude: -157.92715057469777,
+    zipcode: '00000',
+    waveType: 'Lunch Break'
+}};
 const surfBreakReducer = (state = initialState, action) => {
+    let newState;
     switch (action.type) {
         case LOAD: {
             const allBreaks = {};
