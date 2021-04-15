@@ -4,6 +4,7 @@ import * as sessionActions from "./store/session";
 import { useDispatch } from 'react-redux';
 import CreateSurfBreakFormPage from "./components/CreateSurfBreakFormPage/CreateSurfBreakForm";
 import SurfBreaks from "./components/SurfBreaks/SurfBreaks";
+import LandingPage from "./components/LandingPage";
 
 
 import Navigation from "./components/Navigation";
@@ -23,6 +24,9 @@ function App() {
       <Navigation isLoaded={isLoaded}/>
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            <LandingPage />
+          </Route>
           <Route exact path="/surf_breaks">
             <SurfBreaks/>
           </Route>
