@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^12.6.2",
     "autoprefixer": "^9.8.6",
     "faker": "^5.2.0",
+    "is-svg": "^4.2.2",
     "js-cookie": "^2.2.1",
     "postcss": "^7.0.35",
     "react": "^17.0.1",
